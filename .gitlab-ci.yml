@@ -16,5 +16,6 @@ fuzzrunner:
     - cat /words.txt
     - cat /vectors.txt
     # An example fuzzer command. Note the url is DIFFERENT than XAMPP example (no /dvwa).
-    - ruby fuzzer.rb discover http://localhost/ --custom-auth=dvwa
+    # ruby fuzzer.rb discover http://localhost/ --custom-auth=dvwa
+    - python fuzzer.py
   stage: test
