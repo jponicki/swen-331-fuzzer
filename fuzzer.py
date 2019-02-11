@@ -13,8 +13,16 @@ else:
         page = None
         session = None
         print('Action: ' + action)
-        print('URL' + url)
-        print('Option' + option)
+        print('URL: ' + url)
+        print('Option: ' + option)
+
+        if '--custom-auth=' in option:
+            custom_auth = option[14:]
+            print('custom_auth: ' + custom_auth)
+            if custom_auth == 'dvwa':
+                browser = mechanicalsoup.StatefulBrowser()
+                browser.open(url)
+                browser.get_current_form().print_summary()
 
 
 
