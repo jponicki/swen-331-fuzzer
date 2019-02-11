@@ -23,7 +23,11 @@ else:
                 print('here')
                 browser = mechanicalsoup.StatefulBrowser()
                 browser.open(url + "/" + 'dvwa')
-                print(browser.get_current_page())
+                browser.get_current_page()
+                browser.select_form()
+                browser["username"] = "admin"
+                browser["password"] = "password"
+                browser["Login"] = "Login"
 
 
 
