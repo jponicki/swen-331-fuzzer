@@ -28,7 +28,7 @@ else:
                 browser["username"] = "admin"
                 browser["password"] = "password"
                 browser["Login"] = "Login"
-                browser.get_current_form().print_summary()
+                #browser.get_current_form().print_summary()
 
                 response = browser.submit_selected()
                 print(response.text)
