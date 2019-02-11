@@ -15,6 +15,7 @@ fuzzrunner:
     # need some example files for vectors and words? These are on the image
     - cat /words.txt
     - cat /vectors.txt
+    - pip install requests
     # An example fuzzer command. Note the url is DIFFERENT than XAMPP example (no /dvwa).
     # ruby fuzzer.rb discover http://localhost/ --custom-auth=dvwa
     - python fuzzer.py discover http://localhost/ --custom-auth=dvwa
