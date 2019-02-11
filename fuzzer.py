@@ -23,7 +23,7 @@ else:
                 print('here')
                 browser = mechanicalsoup.StatefulBrowser()
                 browser.open(url + "/" + 'dvwa')
-                browser.get_current_page()
+                print(browser.get_current_page())
 
 
 
