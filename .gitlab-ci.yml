@@ -15,8 +15,14 @@ fuzzrunner:
     # need some example files for vectors and words? These are on the image
     - cat /words.txt
     - cat /vectors.txt
+
+    - sudo apt-get update
+    - sudo apt-get install -y --fix-missing libxml2-dev libxslt1-dev
+    - pip3 install lxml
+    - pip3 install mechanicalsoup
     - pip3 install requests --upgrade
+    - python3 fuzzer.py discover http://localhost/ --custom-auth=dvwa
     # An example fuzzer command. Note the url is DIFFERENT than XAMPP example (no /dvwa).
     # ruby fuzzer.rb discover http://localhost/ --custom-auth=dvwa
-    - python fuzzer.py discover http://localhost/ --custom-auth=dvwa
+    # python fuzzer.py discover http://localhost/ --custom-auth=dvwa
   stage: test
