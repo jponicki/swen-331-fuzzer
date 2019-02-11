@@ -9,9 +9,8 @@ else:
     action = sys.argv[1]
     url = sys.argv[2]
     option = sys.argv[3]
-    if action == "discover" or action == "test":
-        page = None
-        session = None
+    if action == "discover":
+        # prints out arguments for clarification
         print('Action: ' + action)
         print('URL: ' + url)
         print('Option: ' + option)
@@ -20,19 +19,16 @@ else:
             custom_auth = option[14:]
             print('custom_auth: ' + custom_auth)
             if custom_auth == 'dvwa':
-                print('here')
                 browser = mechanicalsoup.StatefulBrowser()
-                browser.open(url) # + "/" + 'dvwa')
+                browser.open(url) # open session
                 browser.get_current_page()
                 browser.select_form()
-                browser["username"] = "admin"
+                browser["username"] = "admin"   #submit credentials for form
                 browser["password"] = "password"
                 browser["Login"] = "Login"
-
                 response = browser.submit_selected()
-                print(browser.get_current_page())
-                #print(response.text)
-            else:
+                print(browser.get_current_page()) #print HTML
+            else: #if not dvwa
                 browser = mechanicalsoup.StatefulBrowser()
                 browser.open(url)  # + "/" + 'dvwa')
                 browser.get_current_page()
