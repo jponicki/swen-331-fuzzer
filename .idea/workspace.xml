@@ -36,8 +36,8 @@
       <file leaf-file-name="fuzzer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fuzzer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="30" column="49" lean-forward="false" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
+            <state relative-caret-position="714">
+              <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
@@ -227,8 +227,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fuzzer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="30" column="49" lean-forward="false" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
+        <state relative-caret-position="714">
+          <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
