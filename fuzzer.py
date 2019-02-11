@@ -28,10 +28,14 @@ else:
                 browser["username"] = "admin"
                 browser["password"] = "password"
                 browser["Login"] = "Login"
-                #browser.get_current_form().print_summary()
-
+                print(browser.get_current_page())
                 response = browser.submit_selected()
                 print(response.text)
+            else:
+                browser = mechanicalsoup.StatefulBrowser()
+                browser.open(url)  # + "/" + 'dvwa')
+                browser.get_current_page()
+                print(browser.get_current_page())
 
 
 
