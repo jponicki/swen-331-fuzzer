@@ -22,7 +22,7 @@ else:
             if custom_auth == 'dvwa':
                 browser = mechanicalsoup.StatefulBrowser()
                 browser.open(url)
-                browser.get_current_form().print_summary()
+                browser.get_current_page()
 
 
 
