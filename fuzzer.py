@@ -2,15 +2,21 @@ import sys  # For system arguments
 import requests  # requests HTTP library
 import mechanicalsoup
 
+
+visitedlinks = []
+
 def findLinks(browser):
     link = browser.links()
+    visitedlinks.append(browser.get_url)
     if len(link) > 0:
         print(browser.get_url() + 'has the following links')
         for i in link:
             print(i)
         for i in link:
             browser.follow_link(i)
-            findLinks(browser)
+            if browser.get_url() not in visitedlinks:
+                visitedlinks.append(browser.get_url())
+                findLinks(browser)
     else:
         print(browser.get_url() + 'has no links')
 
@@ -20,6 +26,7 @@ def findLinks(browser):
 
 commonwords = ['admin', 'login', 'password', 'security']
 commonendings = ['.php', '.jsp']
+
 
 if len(sys.argv) < 4:
     print("incorrect number of arguments")
