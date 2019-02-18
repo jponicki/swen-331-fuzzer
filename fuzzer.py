@@ -5,6 +5,7 @@ import mechanicalsoup
 
 visitedlinks = []
 
+'''
 def findLinks(browser):
     link = browser.links()
     visitedlinks.append(browser.get_url)
@@ -22,8 +23,15 @@ def findLinks(browser):
                     print('Cannot reach: ' + browser.get_url())
     else:
         print(browser.get_url() + 'has no links')
+'''
 
-
+def findLinks(browser):
+    link = browser.links()
+    if len(link) > 0:
+        print(browser.get_url() + ' has the following links')
+        for i in link:
+            print(i)
+    
 
 
 
