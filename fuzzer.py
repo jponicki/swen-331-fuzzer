@@ -9,14 +9,17 @@ def findLinks(browser):
     link = browser.links()
     visitedlinks.append(browser.get_url)
     if len(link) > 0:
-        print(browser.get_url() + 'has the following links')
+        print(browser.get_url() + ' has the following links')
         for i in link:
             print(i)
         for i in link:
             browser.follow_link(i)
             if browser.get_url() not in visitedlinks:
                 visitedlinks.append(browser.get_url())
-                findLinks(browser)
+                try:
+                    findLinks(browser)
+                except:
+                    print('Cannot reach: ' + browser.get_url())
     else:
         print(browser.get_url() + 'has no links')
 
