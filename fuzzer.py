@@ -4,6 +4,8 @@ import mechanicalsoup
 
 
 visitedlinks = []
+commonwords = ['admin', 'login', 'password', 'security']
+commonendings = ['.php', '.jsp', '']
 
 '''
 def findLinks(browser):
@@ -31,12 +33,21 @@ def findLinks(browser):
         print(browser.get_url() + ' has the following links')
         for i in link:
             print(i)
-    
+    print('Guessed links: ')
+    for i in commonwords:
+        for j in commonendings:
+            try:
+                browser.find_link(i + j)
+                print(i + j)
+            except mechanicalsoup.LinkNotFoundError:
 
 
 
-commonwords = ['admin', 'login', 'password', 'security']
-commonendings = ['.php', '.jsp']
+
+
+
+
+
 
 
 if len(sys.argv) < 4:
