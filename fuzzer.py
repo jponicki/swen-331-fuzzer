@@ -28,8 +28,15 @@ def findLinks(browser):
         print(browser.get_url() + 'has no links')
 '''
 
-def findLinks(browser):
+def discover(browser):
     link = browser.links()
+    browser.get_current_page()
+    try:
+        browser.select_form()
+        print(browser.get_url() + ' form summary:')
+        browser.get_current_form().print_summary()
+    except mechanicalsoup.LinkNotFoundError:
+        print('No form available')
     if len(link) > 0:
         print(browser.get_url() + ' has the following links')
         for i in link:
@@ -48,15 +55,9 @@ def findLinks(browser):
         if browser.get_url() not in visitedLinks:
             visitedLinks.append(browser.get_url())
             try:
-                findLinks(browser)
+                discover(browser)
             except:
                 print('Cannot reach: ' + browser.get_url())
-
-
-
-
-
-
 
 
 
@@ -91,7 +92,7 @@ else:
                 browser.open(url)  # + "/" + 'dvwa')
                 browser.get_current_page()
                 #print(browser.get_current_page())
-            findLinks(browser)
+            discover(browser)
 
 
     else:
