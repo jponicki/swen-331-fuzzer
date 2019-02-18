@@ -8,44 +8,31 @@ visitedLinks = []
 commonwords = ['admin', 'login', 'password', 'security']
 commonendings = ['.php', '.jsp', '']
 
-'''
-def findLinks(browser):
-    link = browser.links()
-    visitedlinks.append(browser.get_url)
-    if len(link) > 0:
-        print(browser.get_url() + ' has the following links')
-        for i in link:
-            print(i)
-        for i in link:
-            browser.follow_link(i)
-            if browser.get_url() not in visitedlinks:
-                visitedlinks.append(browser.get_url())
-                try:
-                    findLinks(browser)
-                except:
-                    print('Cannot reach: ' + browser.get_url())
-    else:
-        print(browser.get_url() + 'has no links')
-'''
-
 def discover(browser):
     link = browser.links()
     browser.get_current_page()
+    #print form summary
     try:
         browser.select_form()
         print('\n' + browser.get_url() + ' form summary:')
         browser.get_current_form().print_summary()
     except mechanicalsoup.LinkNotFoundError:
         print('No form available')
+
+    #print cookies
     print('\n' + browser.get_url() + ' Cookies:')
     try:
         print(browser.get_cookiejar())
     except mechanicalsoup.LinkNotFoundError:
         print('No cookies')
+
+    #prints links on page
     if len(link) > 0:
         print('\n' + browser.get_url() + ' has the following links')
         for i in link:
             print(i)
+
+    #prints guessed links
     print('\n' + 'Guessed links: ')
     for i in commonwords:
         for j in commonendings:
@@ -60,7 +47,7 @@ def discover(browser):
         if browser.get_url() not in visitedLinks:
             visitedLinks.append(browser.get_url())
             try:
-                discover(browser)
+                discover(browser) #recursion
             except:
                 print('Cannot reach: ' + browser.get_url())
 
