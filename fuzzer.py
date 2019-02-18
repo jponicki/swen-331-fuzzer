@@ -2,6 +2,16 @@ import sys  # For system arguments
 import requests  # requests HTTP library
 import mechanicalsoup
 
+def findLinks(browser):
+    print(browser.get_current_page().find_all('href'))
+
+
+
+
+
+commonwords = ['admin', 'login', 'password', 'security']
+commonendings = ['.php', '.jsp']
+
 if len(sys.argv) < 4:
     print("incorrect number of arguments")
 
@@ -27,13 +37,13 @@ else:
                 browser["password"] = "password"
                 browser["Login"] = "Login"
                 response = browser.submit_selected()
-                print(browser.get_current_page()) #print HTML
+                #print(browser.get_current_page()) #print HTML
             else: #if not dvwa
                 browser = mechanicalsoup.StatefulBrowser()
                 browser.open(url)  # + "/" + 'dvwa')
                 browser.get_current_page()
-                print(browser.get_current_page())
-
+                #print(browser.get_current_page())
+            findLinks(browser)
 
 
     else:
