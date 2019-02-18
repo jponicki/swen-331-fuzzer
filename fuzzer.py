@@ -33,15 +33,20 @@ def discover(browser):
     browser.get_current_page()
     try:
         browser.select_form()
-        print(browser.get_url() + ' form summary:')
+        print('\n' + browser.get_url() + ' form summary:')
         browser.get_current_form().print_summary()
     except mechanicalsoup.LinkNotFoundError:
         print('No form available')
+    print('\n' + browser.get_url() + ' Cookies:')
+    try:
+        print(browser.get_cookiejar())
+    except mechanicalsoup.LinkNotFoundError:
+        print('No cookies')
     if len(link) > 0:
-        print(browser.get_url() + ' has the following links')
+        print('\n' + browser.get_url() + ' has the following links')
         for i in link:
             print(i)
-    print('Guessed links: ')
+    print('\n' + 'Guessed links: ')
     for i in commonwords:
         for j in commonendings:
             try:
