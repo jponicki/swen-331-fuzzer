@@ -38,9 +38,9 @@ def findLinks(browser):
         for j in commonendings:
             try:
                 browser.find_link(i + j)
-                print(i + j)
+                print('Successful:' + i + j)
             except mechanicalsoup.LinkNotFoundError:
-
+                print('Failed:' + i + j)
 
 
 
