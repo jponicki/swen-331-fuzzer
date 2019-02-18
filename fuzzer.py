@@ -3,7 +3,8 @@ import requests  # requests HTTP library
 import mechanicalsoup
 
 
-visitedlinks = []
+successfulLinks = []
+visitedLinks = []
 commonwords = ['admin', 'login', 'password', 'security']
 commonendings = ['.php', '.jsp', '']
 
@@ -39,8 +40,17 @@ def findLinks(browser):
             try:
                 browser.find_link(i + j)
                 print('Successful:' + i + j)
+                successfulLinks.append(i+j)
             except mechanicalsoup.LinkNotFoundError:
                 print('Failed:' + i + j)
+    for i in successfulLinks:
+        browser.follow_link(i)
+        if browser.get_url() not in visitedLinks:
+            visitedLinks.append(browser.get_url())
+            try:
+                findLinks(browser)
+            except:
+                print('Cannot reach: ' + browser.get_url())
 
 
 
