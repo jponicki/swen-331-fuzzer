@@ -3,7 +3,16 @@ import requests  # requests HTTP library
 import mechanicalsoup
 
 def findLinks(browser):
-    print(browser.get_current_page().find_all('href'))
+    link = browser.links()
+    if len(link) > 0:
+        print(browser.get_url() + 'has the following links')
+        for i in link:
+            print(i)
+        for i in link:
+            browser.follow_link(i)
+            findLinks(browser)
+    else:
+        print(browser.get_url() + 'has no links')
 
 
 
