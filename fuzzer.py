@@ -163,17 +163,17 @@ def testaction(url):
         browser["username"] = "admin"  # submit credentials for form
         browser["password"] = "password"
         browser["Login"] = "Login"
-    vectors = readFile(vectors_file)
-    successfulVectors = []
-    for v in vectors:
-        try:
-            browser.find_link(v)
-            print('Successful Vector:' + v)
-            successfulVectors.append(v)
-        except mechanicalsoup.LinkNotFoundError:
-            print('Failed:' + v)
-    for v in successfulVectors:
-            browser.follow_link(v)
+    # vectors = readFile(vectors_file)
+    # successfulVectors = []
+    # for v in vectors:
+    #     try:
+    #         browser.find_link(v)
+    #         print('Successful Vector:' + v)
+    #         successfulVectors.append(v)
+    #     except mechanicalsoup.LinkNotFoundError:
+    #         print('Failed:' + v)
+    # for v in successfulVectors:
+    #         browser.follow_link(v)
 
 
 def main():
