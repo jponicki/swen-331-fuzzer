@@ -5,8 +5,71 @@ import mechanicalsoup
 
 successfulLinks = []
 visitedLinks = []
-commonwords = ['admin', 'login', 'password', 'security']
+commonwords = []
 commonendings = ['.php', '.jsp', '']
+
+custom_auth_flag = False
+custom_auth_file = ''
+common_words_flag = False
+common_words_file = ''
+vectors_flag = False
+vectors_file = ''
+sensitive_flag = False
+sensitive_file = ''
+random_flag = False
+random = False
+slow_flag = False
+slow = 500
+
+def readFile(filename):
+    text_file = open(filename, "r")
+    lines = text_file.readlines()
+    return lines
+
+
+def setflags(action, options):
+    for opt in options:
+        if '--custom-auth=' in opt:
+            custom_auth_flag = True
+            custom_auth_file = opt[14:]
+        elif '--common-words=' in opt:
+            common_words_flag = True
+            common_words_file = opt[15:]
+            commonwords = readFile(common_words_file)
+        elif '--vectors=' in opt:
+            vectors_flag = True
+            vectors_file = opt[10:]
+        elif '--sensitive=' in opt:
+            sensitive_flag = True
+            sensitive_file = opt[12:]
+        elif '--random=' in opt:
+            random_flag = True
+            if opt[9:] == ('true' or 'True'):
+                random = True
+            elif opt[9:] == ('false' or 'False'):
+                random = False
+            else:
+                print('invalid --random option')
+                sys.exit(0)
+        elif '--slow=' in opt:
+            slow_flag = True
+            slow = int(opt[7:])
+    if action == 'discover' and common_words_flag == False:
+        print('--common-words=file required for discover command')
+        sys.exit(0)
+    elif action == 'test' and common_words_flag == True:
+        print('Not a correct discover option')
+        sys.exit(0)
+    elif action == 'discover' and (vectors_flag == True or sensitive_flag == True or random_flag == True or slow_flag == True):
+        print('Not a correct discover option')
+        sys.exit(0)
+    elif action == 'test' and vectors_flag == False:
+        print('--vector=file required for test command')
+        sys.exit(0)
+    elif action == 'test' and sensitive_flag == False:
+        print('--sensitive=file required for test command')
+        sys.exit(0)
+
 
 def discover(browser):
     link = browser.links()
@@ -52,40 +115,53 @@ def discover(browser):
                 print('Cannot reach: ' + browser.get_url())
 
 
+def discoveraction(url):
+    # prints out arguments for clarification
+    print('Action: discover')
+    print('URL: ' + url)
+    if custom_auth_flag is True:
+        print('custom_auth: ' + custom_auth_file)
+        if custom_auth_file == 'dvwa':
+            browser = mechanicalsoup.StatefulBrowser()
+            browser.open(url)  # open session
+            browser.get_current_page()
+            browser.select_form()
+            browser["username"] = "admin"  # submit credentials for form
+            browser["password"] = "password"
+            browser["Login"] = "Login"
+            response = browser.submit_selected()
+            # print(browser.get_current_page()) #print HTML
+        else:  # if not dvwa
+            browser = mechanicalsoup.StatefulBrowser()
+            browser.open(url)  # + "/" + 'dvwa')
+            browser.get_current_page()
+            # print(browser.get_current_page())
 
-if len(sys.argv) < 4:
-    print("incorrect number of arguments")
+        discover(browser)
 
-else:
-    action = sys.argv[1]
-    url = sys.argv[2]
-    option = sys.argv[3]
-    if action == "discover":
-        # prints out arguments for clarification
-        print('Action: ' + action)
-        print('URL: ' + url)
-        print('Option: ' + option)
+def testaction(url):
 
-        if '--custom-auth=' in option:
-            custom_auth = option[14:]
-            print('custom_auth: ' + custom_auth)
-            if custom_auth == 'dvwa':
-                browser = mechanicalsoup.StatefulBrowser()
-                browser.open(url) # open session
-                browser.get_current_page()
-                browser.select_form()
-                browser["username"] = "admin"   #submit credentials for form
-                browser["password"] = "password"
-                browser["Login"] = "Login"
-                response = browser.submit_selected()
-                #print(browser.get_current_page()) #print HTML
-            else: #if not dvwa
-                browser = mechanicalsoup.StatefulBrowser()
-                browser.open(url)  # + "/" + 'dvwa')
-                browser.get_current_page()
-                #print(browser.get_current_page())
-            discover(browser)
 
+def main():
+    if len(sys.argv) < 3:
+        print("incorrect number of arguments")
 
     else:
-        print("invalid action")
+        action = sys.argv[1]
+        url = sys.argv[2]
+        arg = 3
+        options = []
+        while arg <= len(sys.argv):
+            options.append(sys.argv[arg])
+            arg += 1
+        setflags(action, options)
+
+        #option = sys.argv[3]
+
+        if action == "discover":
+            discoveraction(url)
+        elif action == 'test':
+            testaction(url)
+
+        else:
+            print("invalid action")
