@@ -151,8 +151,33 @@ def discoveraction(url):
 
     discover(browser)
 
+
 def testaction(url):
-    print('test')
+    print('Action: test')
+    print('URL: ' + url)
+    if custom_auth_flag is True:
+        print('custom_auth: ' + custom_auth_file)
+
+        browser = mechanicalsoup.StatefulBrowser()
+        browser.open(url)  # open session
+        browser.get_current_page()
+    if custom_auth_file == 'dvwa':
+        browser.select_form()
+        browser["username"] = "admin"  # submit credentials for form
+        browser["password"] = "password"
+        browser["Login"] = "Login"
+    vectors = readFile(vectors_file)
+    successfulVectors = []
+    for v in vectors:
+        try:
+            browser.find_link(v)
+            print('Successful Vector:' + v)
+            successfulVectors.append(v)
+        except mechanicalsoup.LinkNotFoundError:
+            print('Failed:' + v)
+    for v in successfulVectors:
+            browser.follow_link(v)
+
 
 def main():
     if len(sys.argv) < 3:
