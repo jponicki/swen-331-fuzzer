@@ -69,9 +69,6 @@ def setflags(action, options):
     if action == 'discover' and common_words_flag == False:
         print('--common-words=file required for discover command')
         sys.exit(0)
-    elif action == 'test' and common_words_flag == True:
-        print('Not a correct discover option')
-        sys.exit(0)
     elif action == 'discover' and (vectors_flag == True or sensitive_flag == True or random_flag == True or slow_flag == True):
         print('Not a correct discover option')
         sys.exit(0)
