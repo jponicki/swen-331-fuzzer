@@ -28,6 +28,18 @@ def readFile(filename):
 
 
 def setflags(action, options):
+    global custom_auth_flag
+    global custom_auth_file
+    global common_words_flag
+    global common_words_file
+    global vectors_flag
+    global vectors_file
+    global sensitive_flag
+    global sensitive_file
+    global random_flag
+    global random
+    global slow_flag
+    global slow
     for opt in options:
         if '--custom-auth=' in opt:
             custom_auth_flag = True
@@ -165,4 +177,6 @@ def main():
 
         else:
             print("invalid action")
+
+
 main()
