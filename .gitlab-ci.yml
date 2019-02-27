@@ -21,7 +21,7 @@ fuzzrunner:
     - pip3 install lxml
     - pip3 install mechanicalsoup
     - pip3 install requests --upgrade
-    - python3 fuzzer.py discover http://localhost/ --custom-auth=dvwa
+    - python3 fuzzer.py discover http://localhost/ --custom-auth=dvwa --common-words=common_words.txt
     # An example fuzzer command. Note the url is DIFFERENT than XAMPP example (no /dvwa).
     # ruby fuzzer.rb discover http://localhost/ --custom-auth=dvwa
     # python fuzzer.py discover http://localhost/ --custom-auth=dvwa
