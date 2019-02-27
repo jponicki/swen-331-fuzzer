@@ -150,24 +150,27 @@ def discoveraction(url):
 
 
 def testaction(url):
-    print('Action: test')
-    print('URL: ' + url)
-    if custom_auth_flag is True:
-        print('custom_auth: ' + custom_auth_file)
-    if custom_auth_file == 'dvwa':
-        browser = mechanicalsoup.StatefulBrowser()
-        browser.open(url)  # open session
-        browser.get_current_page()
-        browser.select_form()
-        browser["username"] = "admin"  # submit credentials for form
-        browser["password"] = "password"
-        browser["Login"] = "Login"
-        response = browser.submit_selected()
-        # print(browser.get_current_page()) #print HTML
-    else:  # if not dvwa
-        browser = mechanicalsoup.StatefulBrowser()
-        browser.open(url)  # + "/" + 'dvwa')
-        browser.get_current_page()
+    print('I wish I wish upon a star that testing would take me very far, with my grades... ')
+    print('But I\'m tired and need aide.')
+
+    # print('Action: test')
+    # print('URL: ' + url)
+    # if custom_auth_flag is True:
+    #     print('custom_auth: ' + custom_auth_file)
+    # if custom_auth_file == 'dvwa':
+    #     browser = mechanicalsoup.StatefulBrowser()
+    #     browser.open(url)  # open session
+    #     browser.get_current_page()
+    #     browser.select_form()
+    #     browser["username"] = "admin"  # submit credentials for form
+    #     browser["password"] = "password"
+    #     browser["Login"] = "Login"
+    #     response = browser.submit_selected()
+    #     # print(browser.get_current_page()) #print HTML
+    # else:  # if not dvwa
+    #     browser = mechanicalsoup.StatefulBrowser()
+    #     browser.open(url)  # + "/" + 'dvwa')
+    #     browser.get_current_page()
         # print(browser.get_current_page())
     # vectors = readFile(vectors_file)
     # successfulVectors = []
