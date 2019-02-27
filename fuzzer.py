@@ -151,7 +151,7 @@ def main():
         url = sys.argv[2]
         arg = 3
         options = []
-        while arg <= len(sys.argv):
+        while arg < len(sys.argv):
             options.append(sys.argv[arg])
             arg += 1
         setflags(action, options)
