@@ -140,7 +140,7 @@ def discoveraction(url):
         discover(browser)
 
 def testaction(url):
-
+    print('test')
 
 def main():
     if len(sys.argv) < 3:
@@ -165,3 +165,4 @@ def main():
 
         else:
             print("invalid action")
+main()
