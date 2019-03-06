@@ -164,7 +164,7 @@ def testaction(browser):
             print('Successful Vector: ' + resp.status_code)
             working_vectors.append(v)
         except:
-            print('Failed Vector: ' + resp.status_code)
+            print('Failed Vector: ' + v)
 
     # print('Action: test')
     # print('URL: ' + url)
