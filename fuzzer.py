@@ -147,14 +147,24 @@ def discoveraction(url, action):
         # print(browser.get_current_page())
 
     if action == 'test':
-        testaction(url)
+        testaction(browser)
     else:
         discover(browser)
 
 
-def testaction(url):
+def testaction(browser):
     print('I wish I wish upon a star that testing would take me very far, with my grades... ')
     print('But I\'m tired and need aide.')
+
+    vectors = readFile(vectors_file)
+    working_vectors = []
+    for v in vectors:
+        try:
+            resp = browser.request(browser.get_url + '/' + v)
+            print('Successful Vector: ' + resp.status_code)
+            working_vectors.append(v)
+        except:
+            print('Failed Vector: ' + resp.status_code)
 
     # print('Action: test')
     # print('URL: ' + url)
