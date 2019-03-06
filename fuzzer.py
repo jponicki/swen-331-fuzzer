@@ -124,7 +124,7 @@ def discover(browser):
                 print('Cannot reach: ' + browser.get_url())
 
 
-def discoveraction(url):
+def discoveraction(url, action):
     # prints out arguments for clarification
     print('Action: discover')
     print('URL: ' + url)
@@ -146,7 +146,10 @@ def discoveraction(url):
         browser.get_current_page()
         # print(browser.get_current_page())
 
-    discover(browser)
+    if action == 'test':
+        testaction(url)
+    else:
+        discover(browser)
 
 
 def testaction(url):
@@ -201,11 +204,8 @@ def main():
 
         #option = sys.argv[3]
 
-        if action == "discover":
-            discoveraction(url)
-        elif action == 'test':
-            testaction(url)
-
+        if action == "discover" or action == "test":
+            discoveraction(url, action)
         else:
             print("invalid action")
 
