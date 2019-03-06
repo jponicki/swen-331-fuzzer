@@ -22,7 +22,7 @@ fuzzrunner:
     - pip3 install mechanicalsoup
     - pip3 install requests --upgrade
     # python3 fuzzer.py discover http://localhost/ --custom-auth=dvwa --common-words=common_words.txt
-    - python3 fuzzer.py test http://localhost:8080 --custom-auth=dvwa --common-words=common_words.txt --vectors=vectors.txt --sensitive=sensitive.txt
+    - python3 fuzzer.py test http://localhost/ --custom-auth=dvwa --common-words=common_words.txt --vectors=vectors.txt --sensitive=sensitive.txt
     # An example fuzzer command. Note the url is DIFFERENT than XAMPP example (no /dvwa).
     # ruby fuzzer.rb discover http://localhost/ --custom-auth=dvwa
     # python fuzzer.py discover http://localhost/ --custom-auth=dvwa
